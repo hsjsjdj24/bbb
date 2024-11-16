@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+using System.Collections.Generic;
+
+namespace StudentProgram
+{
+    // Define the Student class
+    class Student
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public double Mark { get; set; }
+
+        // Constructor to initialize the student
+        public Student(string id, string name, double mark)
+        {
+            Id = id;
+            Name = name;
+            Mark = mark;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Student> students = new List<Student>();
+
+            Console.Write("Enter the number of students (between 5 and 10): ");
+            int numberOfStudents = int.Parse(Console.ReadLine());
+
+            // Check that the number is between 5 and 10
+            if (numberOfStudents < 5 || numberOfStudents > 10)
+            {
+                Console.WriteLine("Please enter a number between 5 and 10.");
+                return;
+            }
+
+            // Input student data from the user
+            for (int i = 0; i < numberOfStudents; i++)
+            {
+                Console.WriteLine("\nEnter data for student " + (i + 1) + ":");
+
+                Console.Write("ID: ");
+                string id = Console.ReadLine();
+
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Mark: ");
+                double mark = double.Parse(Console.ReadLine());
+
+                // Create a Student object and add it to the list
+                students.Add(new Student(id, name, mark));
+            }
+
+            // Print names of students who passed
+            Console.WriteLine("\nStudents who passed (mark 50 or higher):");
+            foreach (var student in students)
+            {
+                if (student.Mark >= 50)
+                {
+                    Console.WriteLine("Name: " + student.Name + ", Mark: " + student.Mark);
+                }
+            }
+        }
+    }
+}
+
